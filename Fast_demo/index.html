@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人作品集 | 画师</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --text: #2c2a26;
+      --muted: #6b6560;
+      --accent: #8b7355;
+      --accent-soft: #c4b5a0;
+      --card-bg: #fff;
+      --shadow: 0 4px 24px rgba(44, 42, 38, 0.08);
+      --radius: 12px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Serif SC", serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* 导航 */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 2rem;
+      background: rgba(250, 248, 245, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139, 115, 85, 0.12);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    /* 首屏 */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background: linear-gradient(180deg, var(--bg) 0%, rgba(196, 181, 160, 0.15) 100%);
+    }
+
+    .hero h1 {
+      font-family: "ZCOOL XiaoWei", "Noto Serif SC", serif;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero .scroll-hint span {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* 作品区 */
+    section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      font-family: "ZCOOL XiaoWei", serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      color: var(--text);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .gallery-item {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(44, 42, 38, 0.12);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .gallery-item .caption {
+      padding: 1.25rem 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+
+    .gallery-item .caption strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .gallery-item .caption span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    /* 关于 */
+    .about {
+      background: linear-gradient(180deg, transparent 0%, rgba(196, 181, 160, 0.12) 50%, transparent 100%);
+    }
+
+    .about-content {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 1.05rem;
+      color: var(--muted);
+    }
+
+    .about-content p {
+      margin-bottom: 1rem;
+    }
+
+    /* 联系 */
+    .contact {
+      text-align: center;
+      padding-bottom: 4rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .contact-links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border: 2px solid var(--accent-soft);
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .contact-links a:hover {
+      background: var(--accent);
+      color: var(--card-bg);
+      border-color: var(--accent);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(139, 115, 85, 0.12);
+    }
+
+    @media (max-width: 640px) {
+      nav ul { gap: 1.5rem; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-item img { height: 240px; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="#works">作品</a></li>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#contact">联系</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <h1>你的名字</h1>
+    <p class="tagline">插画 · 概念设计 · 原创角色</p>
+    <div class="scroll-hint">
+      <span>↓</span>
+      <span>向下滚动</span>
+    </div>
+  </header>
+
+  <section id="works">
+    <h2 class="section-title">作品展示</h2>
+    <div class="gallery">
+      <article class="gallery-item">
+        <img src="images/work1.jpg" alt="作品 1" onerror="this.src='https://picsum.photos/600/400?random=1'">
+        <div class="caption">
+          <strong>作品标题一</strong>
+          <span>插画 / 2024</span>
+        </div>
+      </article>
+      <article class="gallery-item">
+        <img src="images/work2.jpg" alt="作品 2" onerror="this.src='https://picsum.photos/600/400?random=2'">
+        <div class="caption">
+          <strong>作品标题二</strong>
+          <span>概念设计 / 2024</span>
+        </div>
+      </article>
+      <article class="gallery-item">
+        <img src="images/work3.jpg" alt="作品 3" onerror="this.src='https://picsum.photos/600/400?random=3'">
+        <div class="caption">
+          <strong>作品标题三</strong>
+          <span>角色设计 / 2024</span>
+        </div>
+      </article>
+      <article class="gallery-item">
+        <img src="images/work4.jpg" alt="作品 4" onerror="this.src='https://picsum.photos/600/400?random=4'">
+        <div class="caption">
+          <strong>作品标题四</strong>
+          <span>插画 / 2024</span>
+        </div>
+      </article>
+      <article class="gallery-item">
+        <img src="images/work5.jpg" alt="作品 5" onerror="this.src='https://picsum.photos/600/400?random=5'">
+        <div class="caption">
+          <strong>作品标题五</strong>
+          <span>场景 / 2024</span>
+        </div>
+      </article>
+      <article class="gallery-item">
+        <img src="images/work6.jpg" alt="作品 6" onerror="this.src='https://picsum.photos/600/400?random=6'">
+        <div class="caption">
+          <strong>作品标题六</strong>
+          <span>插画 / 2024</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h2 class="section-title">关于我</h2>
+    <div class="about-content">
+      <p>这里写一段简短的自我介绍，例如创作方向、风格、经历或理念。让访客快速了解你。</p>
+      <p>可以补充合作意向、擅长类型等。</p>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2 class="section-title">联系与合作</h2>
+    <p style="color: var(--muted);">欢迎约稿、合作与交流</p>
+    <div class="contact-links">
+      <a href="mailto:your@email.com">邮箱</a>
+      <a href="#" target="_blank" rel="noopener">微博</a>
+      <a href="#" target="_blank" rel="noopener">站酷</a>
+      <a href="#" target="_blank" rel="noopener">小红书</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 你的名字 · 个人作品集</p>
+  </footer>
+</body>
+</html>
