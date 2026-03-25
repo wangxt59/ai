@@ -1,0 +1,6 @@
+{
+  "openai_api_key": "your-openai-api-key-here",
+  "wechat_api_key": "your-wechat-api-key-here",
+  "wechat_api_url": "https://api.weixin.qq.com",
+  "note": "复制此文件为 config.json 并填写你的 API 密钥"
+}
